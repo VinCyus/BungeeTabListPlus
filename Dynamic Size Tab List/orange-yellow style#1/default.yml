@@ -1,0 +1,74 @@
+showTo: all
+priority: 1
+showHeaderFooter: true
+header:
+  - |-
+    &6&lName &f&lNetwork &8&l> &f&l1.19X
+    &8&m&l-»&f &f&l${viewer server} &8&m&l«-&f
+    &e${playerset:builder size} &8| &e${viewer ping} &8| &e${playerset:owner size}
+    &f▪ &e▪ &6▪
+
+headerAnimationUpdateInterval: 0.2
+footer:
+  - |-
+    &f▪ &e▪ &6▪
+    &8| &e${time H:mm:ss} &8|
+     &8| &e${time dd.MM.yyyy} &8|
+     &f&lHub &8➟ &e${playerset:hub size}  &f&lV &8➟ &e${playerset:vanilla size}  &f&lF &8➟ &e${playerset:factions size}
+    &7&lJoin Our Community &6&l» &r&l/discord
+
+type: DYNAMIC_SIZE
+
+customPlaceholders:
+  other_server_prefix: # makes players on other servers gray
+    !conditional
+    condition: ${viewer server} == ${player server}
+    true: "&f"
+    false: "&7"
+  afk_tag:
+    !conditional
+    condition: ${player essentials_afk}
+    true: " &e●&f "
+    false: " &a●&f "
+  vanish_suffix:
+    !conditional
+    condition: ${player is_hidden}
+    true: " &d&l«"
+    false: ""
+  custom_prefix:
+    !switch
+    parameters: 1
+    expression: ${player vault_primary_group}
+    replacements:
+      "owner": "&6Owner &8┃&f "
+      "admin": "&eAdmin &8┃&f "
+    defaultReplacement: "&f"
+
+# Hidden players show up on the tab list, avoids glitches
+hiddenPlayers: VISIBLE_TO_ADMINS
+
+playerSets:
+  all_players: all
+  global:
+    filter: "true"
+  hub:
+    filter: |-
+      ${player server} == "hub"
+  factions:
+    filter: |-
+      ${player server} == "factions"
+  vanilla:
+    filter: |-
+      ${player server} == "vanilla"
+  owner:
+    filter: ${player vault_primary_group} == "owner"
+  builder:
+    filter: ${player vault_primary_group} == "builder"
+  admin:
+    filter: ${player luckperms_primary_group} == "admin"
+
+playerSet: all_players
+
+playerOrder: "vault_primary_group_weight desc, server viewer-first, server asc, name asc"
+
+playerComponent: "${other_server_prefix}${afk_tag}${custom_prefix}${player name}${vanish_suffix}"
