@@ -1,0 +1,114 @@
+showTo: all
+priority: 1  
+
+showHeaderFooter: true
+header:
+- |-
+  §6&lName §f&lNetwork
+  &f
+
+headerAnimationUpdateInterval: 0.2
+
+footer:
+- |-
+  §6Use /discord command to get link!
+  &7&oDesigned by &f&oVinCyus_
+- |-
+  §eUse /discord command to get link!
+  &7&oDesigned by &f&oVinCyus_
+footerAnimationUpdateInterval: 0.5
+
+playerSets:
+  all_players: all
+  vanilla: ${player server} == "vanilla"
+  factions: ${player server} == "factions"
+  hub: ${player server} == "hub"
+
+type: FIXED_SIZE
+size: 60
+
+defaultIcon: colors/dark_gray.png
+defaultPing: 1000
+
+components:
+- !table
+  columns:
+    0:
+      - {text: "&6&lVanilla &a- &e${playerset:vanilla size}", icon: "colors/gold.png", ping: 0}
+      - !players
+        playerSet: vanilla
+        playerComponent: "${afk_tag}${custom_prefix}${player name}${vanish_suffix}"
+        morePlayersComponent: {text: "&7... and &e${other_count} &7others", icon: "colors/dark_green.png", ping: 0}
+        minSize: 17
+        maxSize: 17
+      - {text: "${animated_bars}", icon: "colors/gold.png", ping: 0}
+      - {text: "&6Ping: &f${viewer_colored_ping}ms", icon: "default/ping.png", ping: 0}
+    1:
+      - {text: "&6&lFactions &a- &e${playerset:factions size}", icon: "colors/gold.png", ping: 0}
+      - !players
+        playerSet: factions
+        playerComponent: "${afk_tag}${custom_prefix}${player name}${vanish_suffix}"
+        morePlayersComponent: {text: "&7... and &e${other_count} &7others", icon: "colors/dark_aqua.png", ping: 0}
+        minSize: 17
+        maxSize: 17
+      - {text: "${animated_bars}", icon: "colors/gold.png", ping: 0}
+      - {text: "&6Time: &f${time H:mm:ss}", icon: "default/clock.png", ping: 0}
+    2:
+    - {text: "&6&lHub &a- &e${playerset:hub size}", icon: "colors/gold.png", ping: 0}
+    - !players
+      playerSet: hub
+      playerComponent: {text: "${afk_tag}${custom_prefix}${player name}${vanish_suffix}", icon: "${player skin}", ping: "${player ping}"}
+      morePlayersComponent: {text: "... and ${other_count} others", icon: "default/players.png", ping: 0}
+      minSize: 17
+      maxSize: 17
+    - {text: "${animated_bars}", icon: "colors/gold.png", ping: 0}
+    - {text: "&6Players: &f${playerset:all_players size}", icon: "default/players.png", ping: 0}
+
+customPlaceholders:
+  afk_tag:
+    !conditional
+    condition: ${player essentials_afk}
+    true: " &e●&f "
+    false: " &a●&f "
+  vanish_suffix:
+    !conditional
+    condition: ${player is_hidden}
+    true: " &c●&f "
+    false: ""
+  custom_prefix:
+    !switch
+    parameters: 1
+    expression: ${player vault_primary_group}
+    replacements:
+      "owner": "&8[&6A&8]&f "
+      "admin": "&8[&eA&8]&f "
+    defaultReplacement: ""
+  viewer_colored_ping0:
+    !conditional
+    condition: "${viewer ping} < 50"
+    true: "&a${viewer ping}"
+    false: "&e${viewer ping}"
+  viewer_colored_ping:
+    !conditional
+    condition: "${viewer ping} < 150"
+    true: ${viewer_colored_ping0}
+    false: "&c${viewer ping}"
+  animated_bars:
+    !animated
+    interval: 0.2
+    elements:
+    - "&7&6-&7--------------"
+    - "&7-&6-&7-------------"
+    - "&7--&6-&7------------"
+    - "&7---&6-&7-----------"
+    - "&7----&6-&7----------"
+    - "&7-----&6-&7---------"
+    - "&7------&6-&7--------"
+    - "&7-------&6-&7-------"
+    - "&7--------&6-&7------"
+    - "&7---------&6-&7-----"
+    - "&7----------&6-&7----"
+    - "&7-----------&6-&7---"
+    - "&7------------&6-&7--"
+    - "&7-------------&6-&7-"
+    - "&7--------------&6-&7"
