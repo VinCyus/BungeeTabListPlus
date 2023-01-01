@@ -1,0 +1,20 @@
+showHeaderFooter: true
+
+header:
+- |-
+  §b&lServerName
+  &F
+  §9Server: §f${viewer server} &f- &9Players: §f${playerset:all_players size} §f- &9Ping: ${viewer_colored_ping}ms &9TPS: ${viewer_colored_tps} &f- &9Balance: &f$${viewer vault_balance 1.2}
+
+headerAnimationUpdateInterval: 0.2
+
+footer:
+- |-
+  &bServer Time: &f${time H:mm:ss}
+  §9Need any Help? §7&oJoin our Discord!
+  &fUse /discord command to get link!
+- |-
+  &bServer Time: &f${time H:mm:ss}
+  §9Need any Help? §7&oJoin our Discord!
+  §7Use /discord command to get link!
+footerAnimationUpdateInterval: 0.5

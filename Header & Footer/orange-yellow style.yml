@@ -1,0 +1,14 @@
+showHeaderFooter: true
+header:
+- |-
+  §6&l+§e§m§l>§6§m§l---§e§m§l>§6&l+  §e§lServerName  §6&l+§e§m§l<§6§m§l---§e§m§l<§6&l+
+
+headerAnimationUpdateInterval: 0.2
+
+footer:
+- |-
+  §6&lDiscord: §ediscord.servername.com
+  
+- |-
+  §6&lDiscord: §ediscord.servername.com
+footerAnimationUpdateInterval: 0.5
